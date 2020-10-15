@@ -9,9 +9,9 @@
   
   <mat-form-field class="mat-form-field1" appearance="outline">
     <mat-label>Driver List</mat-label>
-    <mat-select  [(ngModel)]="Category"  disableRipple>
+    <mat-select  [(ngModel)]="Drivername"  disableRipple>
         
-      <mat-option *ngFor="let value of topics"   value="{{value}}"  >{{value}}</mat-option>
+      <mat-option *ngFor="let value of names"  value={{value}}   >{{value}}</mat-option>
      
     </mat-select>
   </mat-form-field>
@@ -45,6 +45,8 @@
 
   <br>
   <br>
+  <div class="samplediv">
+   <br> 
 <div *ngFor="let value of list;let i = index;">
   <input matInput class="inputwait" placeholder="&nbsp;{{i+1}}. {{value.firstname}}" disabled>
   <input matInput class="timestamp" placeholder="&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }} &nbsp;" disabled>
@@ -52,7 +54,7 @@
   <br>
   <hr>
 </div>
-
+</div>
 </div>
 
 
@@ -62,6 +64,8 @@
   </mat-toolbar>
   <br>
   <br>
+  <div class="samplediv">
+    <br>
   <div *ngFor="let value of selected; let i = index; ">
     
   <input matInput class="inputwait" placeholder="&nbsp;{{i+1}}. &nbsp;{{value.firstname}}" disabled>
@@ -75,7 +79,8 @@
   </div>
 
   <br>
-  <br>
+  </div>
   
 
 </div>
+

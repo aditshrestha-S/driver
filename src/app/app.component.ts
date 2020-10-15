@@ -7,6 +7,8 @@ import { getLocaleDateFormat } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { FormControl, Validators } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Driver } from './drivername.model';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +32,7 @@ constructor(private fireService:FireService,
                 this.openDialog();
                 this.getfiredata();
                 this.getselectedfiredata();
+                this.getdriver()
                 
               }
 
@@ -54,7 +57,7 @@ getErrorMessage() {
 
 
 
-Category="";
+Drivername="";
 mobileno="";
 emailid="";
 sample;
@@ -70,7 +73,7 @@ today;
       
       this.today=Date();
      
-      if(this.Category == "Guest")
+      if(this.Drivername == "Guest")
       {
       
         this.sample={
@@ -87,16 +90,16 @@ today;
       
         this.sample={
 
-                "firstname":this.Category,
+                "firstname":this.Drivername,
                 "timestamp":this.today,
-                "mobileno":"+91"+this.mobileno,
+                "mobileno":"+1"+this.mobileno,
                 "emailid":this.emailid 
                 
                   }
       }
       
               
-      if(this.Category==""  )
+      if(this.Drivername==""  )
       {
         this.errorflag=true;
         this.mobflag=false;
@@ -119,21 +122,23 @@ today;
       }
       else
       {
-        
+        //console.log(this.Drivername)
         
         //call the add function
-      this.Fire.collection('User').add(this.sample);
+        this.Fire.collection('User').add(this.sample);
+        this.sendsmstoadmin();
+        //console.log(this.sample);
 
-      //console.log(this.sample);
+        //disable all error flags
+        this.errorflag=false;
+        this.mobflag=false;
+        this.mobflaglength=false;
 
-      //disable all error flags
-      this.errorflag=false;
-      this.mobflag=false;
-      this.mobflaglength=false;
-
-      //reset all fields.
-      this.Category="";
-      this.mobileno="";
+        //reset all fields.
+        this.Drivername="";
+        this.mobileno="";
+        this.emailid="";
+      
       }
         
       
@@ -209,7 +214,7 @@ this.fireService.getfiredata().subscribe(actionArray =>{
 
 
 //getting selectrd list  record from firebase function
-
+k=0;
 slength=0;
 selected:User[];
 added;
@@ -225,7 +230,22 @@ this.fireService.getsfiredata().subscribe(actionArray =>{
   });
   //console.log(this.selected.length);
   //console.log(this.slength);
-
+//
+  // Sorting Selected list
+  //
+  for(this.k=0;this.k<this.selected.length;this.k++)
+  {
+    for(this.j=this.i+1;this.j<this.selected.length;this.j++)
+    {
+      if(this.selected[this.k].timestamp < this.selected[this.j].timestamp)
+      {
+       // this.temp=this.list[this.i];
+        this.temp=this.selected[this.k];
+        this.selected[this.k]=this.selected[this.j];
+        this.selected[this.j]=this.temp;
+      }
+    }
+  }
 
   //for added user
   if(this.selected.length > this.slength )
@@ -266,6 +286,53 @@ playAudio(){
   
 }
 
+//getting driver list
+driverlist:Driver[];
+x;
+names=[' '];
+
+
+getdriver()
+    {
+            this.fireService.getdrivers().subscribe(actionArray =>
+              {
+                this.driverlist=actionArray.map(item=>
+                {
+                  return{
+                    id: item.payload.doc.id,
+                    ...item.payload.doc.data()  as Driver
+                  }
+                  
+                });
+  
+                this.names[0]=" ";
+
+                for(this.x=0;this.x<this.driverlist.length;this.x++)
+                  {
+                    this.names[this.x]=this.driverlist[this.x].name;
+                  }
+                  console.log(this.names);
+             })
+
+    }
+
+
+     //sending sms function
+  
+    sendsmstoadmin()
+        {
+          if(this.Drivername =="Guest")
+          {
+            this.fireService.sendsmstoadmin(this.mobileno);
+          }
+          else{
+            this.fireService.sendsmstoadmin(this.Drivername);
+          }
+           
+          
+        }
+
+    
 
 
 

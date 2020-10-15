@@ -8,7 +8,7 @@ height: 80px;
 .div1
 {
 background-color:white;
-height: 30em;
+height: 35em;
 width: 25em;
 border-radius: 10px;
 border-style: solid;
@@ -23,7 +23,7 @@ float: left;
 
 h2
 {
-    margin-inline-start: 6em;
+    margin-inline-start: 4.5em;
     color: white;
     font-weight: bold;
     font-size: 20px;
@@ -50,7 +50,7 @@ h2
 .div2
 {
 background-color:white;
-height: 30em;
+height: 35em;
 width: 25em;
 border-radius: 10px;
 border-style: solid;
@@ -59,8 +59,8 @@ margin-inline-start: 2em;
 margin-top: 7em;
 float: left;
 
-max-height: 30em;
-overflow-y: scroll;
+/*max-height: 30em;
+overflow-y: scroll;*/
 
 }   
 
@@ -85,7 +85,7 @@ overflow-y: scroll;
 .div3
 {
 background-color:white;
-height: 30em;
+height: 35em;
 width: 25em;
 border-radius: 10px;
 border-style: solid;
@@ -94,8 +94,8 @@ margin-inline-start: 2em;
 margin-top: 7em;
 float: left;
 
-max-height: 30em;
-overflow-y: scroll;
+/*max-height: 30em;
+overflow-y: scroll;*/
 
 } 
 
@@ -138,7 +138,11 @@ overflow-y: scroll;
         text-align: center;
     }
 
-
+    .samplediv
+    {
+        max-height: 25em;
+        overflow-y: scroll; 
+    }
 
 /*<<<---Mobile view--->>>>
 
@@ -164,7 +168,7 @@ overflow-y: scroll;
     .div1
     {
         background-color:white;
-        height: 30em;
+        height: 35em;
         width: 20em;
         border-radius: 10px;
         border-style: solid;
@@ -173,8 +177,8 @@ overflow-y: scroll;
         margin-top: 5em;
         float: left;
 
-        max-height: 30em;
-        overflow-y: scroll;
+       /* max-height: 30em;
+        overflow-y: scroll;*/
 
     }
 
@@ -207,7 +211,7 @@ overflow-y: scroll;
     .div2
     {
         background-color:white;
-        height: 30em;
+        height: 35em;
         width: 20em;
         border-radius: 10px;
         border-style: solid;
@@ -216,8 +220,8 @@ overflow-y: scroll;
         margin-top: 7em;
         float: left;
     
-        max-height: 30em;
-        overflow-y: scroll;
+      /*  max-height: 30em;
+        overflow-y: scroll;*/
     
     } 
 
@@ -266,7 +270,7 @@ overflow-y: scroll;
     .div3
     {
         background-color:white;
-        height: 30em;
+        height: 35em;
         width: 20em;
         border-radius: 10px;
         border-style: solid;
@@ -275,8 +279,8 @@ overflow-y: scroll;
         margin-top: 7em;
         float: left;
     
-        max-height: 30em;
-        overflow-y: scroll;
+       /* max-height: 30em;
+        overflow-y: scroll;*/
     
     }
 
